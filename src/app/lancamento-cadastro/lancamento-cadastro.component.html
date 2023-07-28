@@ -1,0 +1,76 @@
+<section class="flex-container">
+  <h2>Novo Lançamento</h2>
+
+  <form class="form">
+
+    <div class="flex-filds-container">
+      <mat-form-field appearance="outline" class="cinquenta-per-width">
+        <mat-label>Vencimento</mat-label>
+        <input matInput placeholder="dd/MM/yyyy" [matDatepicker]="picker">
+        <mat-datepicker-toggle matIconSuffix [for]="picker">
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="cinquenta-per-width">
+        <mat-label>Pagamento</mat-label>
+        <input matInput placeholder="dd/MM/yyyy" [matDatepicker]="picker">
+        <mat-datepicker-toggle matIconSuffix [for]="picker">
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="flex-filds-container">
+      <mat-form-field appearance="outline" class="set-cinco-per-width">
+        <mat-label>Descrição</mat-label>
+        <input matInput placeholder="Informe a descrição">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="vinte-cinco-per-width">
+        <mat-label>Valor</mat-label>
+        <input matInput placeholder="Informe o valor">
+      </mat-form-field>
+    </div>
+
+    <div class="flex-filds-container">
+      <mat-form-field appearance="outline" class="vinte-cinco-per-width">
+        <mat-label>Categoria</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let c of categorias" [value]="c.value">
+            {{ c.label }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="set-cinco-per-width">
+        <mat-label>Pessoa</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let p of pessoas" [value]="p.codigo">
+            {{ p.nome }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline" class="cem-per-width">
+      <mat-label>Observação</mat-label>
+      <textarea matInput name="observacoes"
+            cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            cdkAutosizeMinRows="3"
+            cdkAutosizeMaxRows="5">
+</textarea>
+
+    </mat-form-field>
+
+
+
+    <div class="btn">
+      <button mat-raised-button color="primary">Salvar</button>
+      <button mat-raised-button >Novo</button>
+      <button mat-raised-button >Voltar</button>
+    </div>
+
+  </form>
+</section>

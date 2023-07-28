@@ -1,0 +1,49 @@
+.btn{
+  margin-top: 30px;
+}
+
+button {
+  margin-right: 10px;
+}
+
+.set-cinco-per-width{
+  width: 74%;
+}
+
+.vinte-cinco-per-width{
+  width: 25%;
+}
+
+.cinquenta-per-width{
+  width: 49.5%;
+}
+
+.trinta-tres-per-width{
+  width: 32.7%;
+}
+
+.flex-filds-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-content: stretch;
+}
+
+
+@media only screen and (max-width: 768px) {
+  .flex-filds-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
+  }
+
+  .trinta-tres-per-width, .cinquenta-per-width, .cinquenta-per-width, .vinte-cinco-per-width, .set-cinco-per-width{
+    width: 100%;
+  }
+
+}
