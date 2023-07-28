@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 
 export interface Pessoa {
@@ -12,6 +13,10 @@ export interface Pessoa {
   styleUrls: ['./lancamento-cadastro.component.css']
 })
 export class LancamentoCadastroComponent {
+  public tipos = [
+    {label:'Receita', value:"RECEITA"},
+    {label:'Despesa', value: "DESPESA"}
+  ];
   public categorias = [
     { label: 'Alimentação', value: 1 },
     { label: 'Transporte', value: 2 },
@@ -24,4 +29,7 @@ export class LancamentoCadastroComponent {
     { nome: 'Maria Abadia', codigo: 3 }
   ]
 
+  public salvar (form: NgForm){
+    console.log(form.value);
+  }
 }

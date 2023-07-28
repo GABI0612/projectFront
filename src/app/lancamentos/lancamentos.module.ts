@@ -10,11 +10,13 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTooltipModule} from '@angular/material/tooltip';
-
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 import { LancamentoPesquisaComponent } from './lancamento-pesquisa/lancamento-pesquisa.component';
 import { LancamentoGridComponent } from './lancamento-grid/lancamento-grid.component';
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,10 @@ import { LancamentoGridComponent } from './lancamento-grid/lancamento-grid.compo
   ],
   imports: [
     CommonModule,
+    RouterModule,
+    FormsModule,
+
+
     MatButtonModule,
     MatIconModule,
     MatInputModule,
@@ -32,7 +38,8 @@ import { LancamentoGridComponent } from './lancamento-grid/lancamento-grid.compo
     MatSelectModule,
     MatTableModule,
     MatPaginatorModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatButtonToggleModule,
   ],
   exports: [
     LancamentoCadastroComponent,

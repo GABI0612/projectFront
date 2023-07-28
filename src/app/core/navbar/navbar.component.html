@@ -1,6 +1,6 @@
 
 <mat-toolbar color="primary">
-  <button mat-icon-button>
+  <button mat-icon-button (click)="drawer.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
   <span>Lançamento de Contas</span>
@@ -10,3 +10,31 @@
   </button>
 </mat-toolbar>
 
+<mat-drawer-container class="container" autosize>
+  <mat-drawer #drawer class="sidenav" mode="side" opened>
+    <mat-nav-list>
+      <mat-list-item routerLink="">
+        <mat-icon matListItemIcon>point_of_sale</mat-icon>
+        <div matListItemTitle >Lançamentos</div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+
+      <mat-list-item routerLink="/pessoa">
+        <mat-icon matListItemIcon>person</mat-icon>
+        <div matListItemTitle>Pessoas</div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+
+      <mat-list-item>
+        <mat-icon matListItemIcon>logout</mat-icon>
+        <div matListItemTitle>Logout</div>
+      </mat-list-item>
+
+    </mat-nav-list>
+  </mat-drawer>
+
+  <mat-drawer-content class="sidenav-content">
+    
+<router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

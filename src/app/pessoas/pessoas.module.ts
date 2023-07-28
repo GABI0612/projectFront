@@ -12,6 +12,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { PassoaGridComponent } from './passoa-grid/passoa-grid.component';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
 import { PessoaPesquisaComponent } from './pessoa-pesquisa/pessoa-pesquisa.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -23,6 +24,9 @@ import { PessoaPesquisaComponent } from './pessoa-pesquisa/pessoa-pesquisa.compo
   ],
   imports: [
     CommonModule,
+    RouterModule,
+
+
     MatButtonModule,
     MatIconModule,
     MatInputModule,
