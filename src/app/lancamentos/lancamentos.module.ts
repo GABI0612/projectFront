@@ -17,6 +17,7 @@ import { LancamentoPesquisaComponent } from './lancamento-pesquisa/lancamento-pe
 import { LancamentoGridComponent } from './lancamento-grid/lancamento-grid.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,8 @@ import { FormsModule } from '@angular/forms';
     MatPaginatorModule,
     MatTooltipModule,
     MatButtonToggleModule,
+    
+    CurrencyMaskModule
   ],
   exports: [
     LancamentoCadastroComponent,

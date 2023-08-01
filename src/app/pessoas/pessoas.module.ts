@@ -13,7 +13,9 @@ import { PassoaGridComponent } from './passoa-grid/passoa-grid.component';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
 import { PessoaPesquisaComponent } from './pessoa-pesquisa/pessoa-pesquisa.component';
 import { RouterModule } from '@angular/router';
-
+import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { FormsModule } from '@angular/forms';
+import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 
 
 @NgModule({
@@ -25,6 +27,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     RouterModule,
+    FormsModule,
 
 
     MatButtonModule,
@@ -35,7 +38,12 @@ import { RouterModule } from '@angular/router';
     MatSelectModule,
     MatTableModule,
     MatPaginatorModule,
-    MatTooltipModule
+    MatTooltipModule,
+
+    CurrencyMaskModule,
+    NgxMaskDirective, 
+    NgxMaskPipe
+ 
   ], 
   exports: [
   PessoaPesquisaComponent,

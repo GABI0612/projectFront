@@ -1,57 +1,118 @@
 <section class="flex-container">
   <h2>Nova Pessoa</h2>
 
-  <form class="form">
+  <form class="form" #pessCadastroForm="ngForm">
 
     <mat-form-field appearance="outline" class="example-full-width">
       <mat-label>Nome</mat-label>
-      <input matInput placeholder="Informe o nome completo">
+      <input name="nome" ngModel #nome="ngModel" matInput placeholder="Informe o nome completo" required minlength="5">
+   
+      <mat-error *ngIf="nome.invalid && (nome.dirty || nome.touched)">
+        <span *ngIf="nome.errors?.['required']">
+          Este campo é obrigatório.
+        </span>
+        <span *ngIf="nome.errors?.['minlength']">
+          A descrição deve ter no mínimo 5 caracteres.
+        </span>
+      </mat-error>
+   
     </mat-form-field>
+
+
+
 
     <div class="flex-filds-container">
       <mat-form-field appearance="outline" class="set-cinco-per-width">
         <mat-label>Logradouro</mat-label>
-        <input matInput placeholder="Informe o logradouro">
+        <input name="logradouro" ngModel #logradouro="ngModel" matInput placeholder="Informe o logradouro" required>
+      
+        <mat-error *ngIf="logradouro.invalid && (logradouro.dirty || logradouro.touched)">
+          <span *ngIf="logradouro.errors?.['required']">
+            Este campo é obrigatório.
+          </span>
+        </mat-error>
+      
       </mat-form-field>
 
-      <mat-form-field appearance="outline" class="vinte-cinco-per-width">
+      <mat-form-field appearance="outline" class="vinte-cinco-per-width" >
         <mat-label>Número</mat-label>
-        <input matInput placeholder="Informe o número">
+        <input name="numero" ngModel #numero="ngModel" matInput placeholder="Informe o número" required>
+      
+        <mat-error *ngIf="numero.invalid && (numero.dirty || numero.touched)">
+          <span *ngIf="numero.errors?.['required']">
+            Este campo é obrigatório.
+          </span>
+        </mat-error>
+      
       </mat-form-field>
     </div>
 
     <div class="flex-filds-container">
-      <mat-form-field appearance="outline" class="trinta-tres-per-width">
+      <mat-form-field appearance="outline" class="trinta-tres-per-width" >
         <mat-label>Complemento</mat-label>
-        <input matInput placeholder="Informe o complemento">
+        <input  matInput placeholder="Informe o complemento" >
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="trinta-tres-per-width">
         <mat-label>Bairro</mat-label>
-        <input matInput placeholder="Informe o bairro">
+        <input name="bairro" ngModel #bairro="ngModel" matInput placeholder="Informe o bairro" required>
+      
+        <mat-error *ngIf="bairro.invalid && (bairro.dirty || bairro.touched)">
+          <span *ngIf="bairro.errors?.['required']">
+            Este campo é obrigatório.
+          </span>
+        </mat-error>
       </mat-form-field>
 
+
+      
       <mat-form-field appearance="outline" class="trinta-tres-per-width">
         <mat-label>CEP</mat-label>
-        <input matInput placeholder="Informe o cep">
+        
+        <input name="cep" 
+        type="text" [dropSpecialCharacters]="false" mask="00000-000"
+        ngModel #cep="ngModel"  matInput placeholder="Informe o cep" required>
+      
+
+      
+        <mat-error *ngIf="cep.invalid && (cep.dirty || cep.touched)">
+          <span *ngIf="cep.errors?.['required']">
+            Este campo é obrigatório.
+          </span>
+        </mat-error>
+      
       </mat-form-field>
     </div>
 
     <div class="flex-filds-container">
       <mat-form-field appearance="outline" class="cinquenta-per-width">
         <mat-label>Cidade</mat-label>
-        <input matInput placeholder="Informe a cidade">
+        <input name="cidade" ngModel #cidade="ngModel" matInput placeholder="Informe a cidade" required>
+      
+        <mat-error *ngIf="cidade.invalid && (cidade.dirty || cidade.touched)">
+          <span *ngIf="cidade.errors?.['required']">
+            Este campo é obrigatório.
+          </span>
+        </mat-error>
+      
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="cinquenta-per-width">
         <mat-label>Estado</mat-label>
-        <input matInput placeholder="Informe o estado">
+        <input name="estado" ngModel #estado="ngModel" matInput placeholder="Informe o estado" required>
+      
+        <mat-error *ngIf="estado.invalid && (estado.dirty || estado.touched)">
+          <span *ngIf="estado.errors?.['required']">
+            Este campo é obrigatório.
+          </span>
+        </mat-error>
+      
       </mat-form-field>
     </div>
 
 
     <div class="btn">
-      <button mat-raised-button color="primary">Salvar</button>
+      <button [disabled]="pessCadastroForm.invalid" mat-raised-button color="primary" (click)="salvar(pessCadastroForm)">Salvar</button>
       <button mat-raised-button >Novo</button>
       <button mat-raised-button >Voltar</button>
     </div>
