@@ -1,9 +1,9 @@
 <section class="flex-container">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 tbl">
+    <table matSort mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 tbl">
   
       <!-- Pessoa Column -->
-      <ng-container matColumnDef="pessoa">
-        <th mat-header-cell *matHeaderCellDef> Pessoa </th>
+      <ng-container matColumnDef="nome">
+        <th mat-sort-header mat-header-cell *matHeaderCellDef> Pessoa </th>
         <td mat-cell *matCellDef="let pessoa"> {{pessoa.nome}} </td>
       </ng-container>
   
@@ -30,27 +30,33 @@
       
   
       <!-- Valor Column -->
-      <ng-container matColumnDef="acao">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let pessoa">
-          <button mat-icon-button matTooltip="Editar">
-            <mat-icon>edit_note</mat-icon>
-          </button>
-  
-          <button mat-icon-button matTooltip="Excluir">
-            <mat-icon>delete_sweep</mat-icon>
-          </button>
-  
-        </td>
-      </ng-container>
+    <ng-container matColumnDef="acao">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let pessoa">
+        <button [routerLink]="['/pessoa/',pessoa.codigo]" mat-icon-button matTooltip="Editar">
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        <button (click)="confirmarExclusao(pessoa, pessoa.codigo)" mat-icon-button matTooltip="Excluir">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
   
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
   
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-                   showFirstLastButtons
-                   aria-label="Selecione a página">
+    
+    <mat-paginator 
+    *ngIf="responsePageable"
+    (page)="handlePageEvent($event)"
+    [pageSizeOptions]="[5, 10]"
+    [pageSize]="responsePageable.size"
+    [length]="responsePageable.totalElements"
+    [pageIndex]="responsePageable.number"
+    showFirstLastButtons
+    aria-label="Selecione a página">
     </mat-paginator>
   
     <div class="btn">

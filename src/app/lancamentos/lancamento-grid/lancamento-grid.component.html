@@ -1,48 +1,48 @@
 <section class="flex-container">
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 tbl">
+  <table matSort mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 tbl">
 
     <!-- Pessoa Column -->
     <ng-container matColumnDef="pessoa">
-      <th mat-header-cell *matHeaderCellDef> Pessoa </th>
+      <th mat-header-cell *matHeaderCellDef
+      mat-sort-header> Pessoa </th>
       <td mat-cell *matCellDef="let lancamento"> {{lancamento.pessoa}} </td>
     </ng-container>
 
     <!-- Descrição Column -->
     <ng-container matColumnDef="descricao">
-      <th mat-header-cell *matHeaderCellDef> Descrição </th>
+      <th mat-sort-header mat-header-cell *matHeaderCellDef> Descrição </th>
       <td mat-cell *matCellDef="let lancamento"> {{lancamento.descricao}} </td>
     </ng-container>
 
     <!-- Vencimento Column -->
-    <ng-container matColumnDef="vencimento">
-      <th mat-header-cell *matHeaderCellDef> Vencimento </th>
-      <td mat-cell *matCellDef="let lancamento"> {{lancamento.vencimento | date: "dd/MM/y"}} </td>
+    <ng-container matColumnDef="dataVencimento">
+      <th mat-header-cell *matHeaderCellDef > Vencimento </th>
+      <td mat-cell *matCellDef="let lancamento"> {{lancamento.dataVencimento | date: "dd/MM/y"}} </td>
     </ng-container>
 
     <!-- Pagamento Column -->
-    <ng-container matColumnDef="pagamento">
-      <th mat-header-cell *matHeaderCellDef> Pagamento </th>
-      <td mat-cell *matCellDef="let lancamento"> {{lancamento.pagamento | date: "dd/MM/y"}} </td>
+    <ng-container matColumnDef="dataPagamento">
+      <th mat-header-cell *matHeaderCellDef > Pagamento </th>
+      <td mat-cell *matCellDef="let lancamento"> {{lancamento.dataPagamento | date: "dd/MM/y"}} </td>
     </ng-container>
 
     <!-- Valor Column -->
     <ng-container matColumnDef="valor">
-      <th mat-header-cell *matHeaderCellDef> Valor </th>
-      <td mat-cell *matCellDef="let lancamento"> <span [ngStyle]="{ color: lancamento.tipo === 'RECEITA' ? 'blue' : 'red'}"> {{lancamento.valor | currency: 'BRL' }} </span> </td>
+      <th mat-header-cell *matHeaderCellDef > Valor </th>
+      <td mat-cell *matCellDef="let lancamento"> <span [ngStyle]="{ color: lancamento.tipo === 'DESPESA' ? 'red' : 'blue'}"> {{lancamento.valor | currency: 'BRL'}} </span> </td>
     </ng-container>
 
     <!-- Valor Column -->
     <ng-container matColumnDef="acao">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let lancamento">
-        <button mat-icon-button matTooltip="Editar">
-          <mat-icon>edit_note</mat-icon>
+        <button [routerLink]="['/lancamento/',lancamento.codigo]" mat-icon-button matTooltip="Editar">
+          <mat-icon>edit</mat-icon>
         </button>
 
-        <button mat-icon-button matTooltip="Excluir">
-          <mat-icon>delete_sweep</mat-icon>
+        <button (click)="confirmarExclusao(lancamento, lancamento.codigo)" mat-icon-button matTooltip="Excluir">
+          <mat-icon>delete</mat-icon>
         </button>
-
       </td>
     </ng-container>
 
@@ -50,13 +50,19 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-                 showFirstLastButtons
-                 aria-label="Selecione a página">
+  <mat-paginator
+    *ngIf="responsePageable"
+    (page)="handlePageEvent($event)"
+    [pageSizeOptions]="[5, 10]"
+    [pageSize]="responsePageable.size"
+    [length]="responsePageable.totalElements"
+    [pageIndex]="responsePageable.number"
+    showFirstLastButtons
+    aria-label="Selecione a página">
   </mat-paginator>
 
   <div class="btn">
-    <button mat-raised-button color="primary" routerLink="/lancamento/novo">Novo lançamento</button>
+    <button mat-raised-button color="primary" routerLink="/lancamento/novo" >Novo Lançamento</button>
   </div>
-  
+
 </section>

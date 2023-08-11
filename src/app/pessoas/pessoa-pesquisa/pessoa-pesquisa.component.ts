@@ -1,35 +1,45 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 
 
-export interface Pessoa {
-  nome: string;
-  cidade: string;
-  estado: string;
-  status: boolean;
-}
 
-const ELEMENT_DATA: Pessoa[] = [
-  { nome: 'Henrique Medeiros', cidade: "Manaus", estado: 'AM', status: true },
-  { nome: 'Ana Silva', cidade: "São Paulo", estado: 'SP', status: false },
-  { nome: 'Carlos Ferreira', cidade: "Rio de Janeiro", estado: 'RJ', status: true },
-  { nome: 'Maria Oliveira', cidade: "Belo Horizonte", estado: 'MG', status: true },
-  { nome: 'Ricardo Santos', cidade: "Porto Alegre", estado: 'RS', status: true },
-  { nome: 'Beatriz Souza', cidade: "Salvador", estado: 'BA', status: false },
-  { nome: 'Fernanda Lima', cidade: "Curitiba", estado: 'PR', status: true },
-  { nome: 'Pedro Alves', cidade: "Fortaleza", estado: 'CE', status: true },
-  { nome: 'Mariana Costa', cidade: "Recife", estado: 'PE', status: true },
-  { nome: 'Lucas Carvalho', cidade: "Brasília", estado: 'DF', status: true }
-];
+import { PessoaFiltro } from 'src/app/shared/model/pessoaFiltro.model';
+import { ResponsePageable } from 'src/app/shared/model/responsePageable.model';
+import { PessoaService } from '../pessoa.service';
+import { Pessoa } from 'src/app/shared/model/pessoa.model';
+
 
 @Component({
   selector: 'app-pessoa-pesquisa',
   templateUrl: './pessoa-pesquisa.component.html',
   styleUrls: ['./pessoa-pesquisa.component.css']
 })
-export class PessoaPesquisaComponent {
-  dataSourcePessoa = new MatTableDataSource<Pessoa>(ELEMENT_DATA);
-  
+export class PessoaPesquisaComponent implements OnInit {
+  PessoaDataSource = new MatTableDataSource<Pessoa>();
+  responsePageable!: ResponsePageable;
+  date = new Date();
+  filtro: PessoaFiltro = {
+    nome: "",
+    pagina: 0,
+    itensPorPagina: 5
+  };
 
+  constructor(private pessoaService: PessoaService) { }
+  ngOnInit(): void {
+    this.pesquisarPessoas();
+  }
+
+  public pesquisarPessoas() {
+    console.log(this.filtro);
+    this.pessoaService.pesquisar(this.filtro).subscribe(
+      {
+      next: (res) => {
+        this.PessoaDataSource.data = res.content;
+        this.responsePageable = res;
+        console.log(res.content);
+      },
+      error: (error) => console.log(error)
+  });
+  }
 
 }

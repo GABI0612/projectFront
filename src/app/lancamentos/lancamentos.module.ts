@@ -11,13 +11,25 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { MatSortModule } from '@angular/material/sort';
+
+import { CurrencyMaskModule } from 'ng2-currency-mask';
 
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 import { LancamentoPesquisaComponent } from './lancamento-pesquisa/lancamento-pesquisa.component';
 import { LancamentoGridComponent } from './lancamento-grid/lancamento-grid.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { HttpClientModule } from '@angular/common/http';
+import { LancamentoService } from './lancamento.service';
+import { SharedModule } from '../shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatDividerModule } from '@angular/material/divider';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatToolbarModule} from '@angular/material/toolbar';
+
 
 @NgModule({
   declarations: [
@@ -31,22 +43,37 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
     FormsModule,
 
 
-    MatButtonModule,
+    MatToolbarModule,
     MatIconModule,
     MatInputModule,
-    MatDatepickerModule,
+    MatButtonModule,
     MatNativeDateModule,
-    MatSelectModule,
+    MatDatepickerModule,
     MatTableModule,
     MatPaginatorModule,
+    MatSortModule,
     MatTooltipModule,
+    MatSidenavModule,
+    MatListModule,
+    MatDividerModule,
+    MatSelectModule,
     MatButtonToggleModule,
-    
-    CurrencyMaskModule
+    MatAutocompleteModule,
+
+    SharedModule,
+
+    CurrencyMaskModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    HttpClientModule
+
   ],
   exports: [
     LancamentoCadastroComponent,
     LancamentoPesquisaComponent
+  ],
+  providers: [
+    LancamentoService
   ]
 })
 export class LancamentosModule { }

@@ -9,19 +9,20 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { PassoaGridComponent } from './passoa-grid/passoa-grid.component';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
 import { PessoaPesquisaComponent } from './pessoa-pesquisa/pessoa-pesquisa.component';
 import { RouterModule } from '@angular/router';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { FormsModule } from '@angular/forms';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
+import { PessoaService } from './pessoa.service';
+import { PassoaGridComponent } from './passoa-grid/passoa-grid.component';
 
 
 @NgModule({
   declarations: [
-    PessoaPesquisaComponent,
     PessoaCadastroComponent,
+   PessoaPesquisaComponent,
     PassoaGridComponent
   ],
   imports: [
@@ -47,7 +48,10 @@ import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
   ], 
   exports: [
   PessoaPesquisaComponent,
-    PessoaCadastroComponent,]
-    
+    PessoaCadastroComponent,
+  ],
+    providers: [
+      PessoaService
+    ]
 })
 export class PessoasModule { }
